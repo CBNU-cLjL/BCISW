@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCISW - Brain Computer Interface Standard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-text">BCISW</span>
+            <span class="logo-sub">NEURAL_KERNEL_v1.0.4</span>
+        </div>
+        <div class="status-indicator">
+            <div class="pulse-dot"></div>
+            <span>System Active</span>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <section class="panel" id="signal-panel">
+            <div class="panel-header">
+                <h2>Neural Stream</h2>
+                <div class="badge">LSL DATA INGESTION</div>
+            </div>
+            <div class="chart-container">
+                <canvas id="wave-canvas"></canvas>
+            </div>
+            <div class="channel-stats" id="channel-stats">
+                <!-- Dynamic in app.js -->
+            </div>
+        </section>
+
+        <section class="panel" id="spatial-panel">
+            <div class="panel-header">
+                <h2>Spatial Observer</h2>
+                <div class="badge">SENSORY MAPPING</div>
+            </div>
+            <center>
+            <div class="spatial-radar" id="radar">
+                <div class="radar-scan"></div>
+                <div class="radar-center"></div>
+                <!-- Dynamic Entities added here via JS -->
+            </div>
+            </center>
+        </section>
+
+        <section class="panel" id="encoding-panel">
+            <div class="panel-header">
+                <h2>Encoding Pipeline</h2>
+                <div class="badge">HAPTIC_ARRAY_v0.2</div>
+            </div>
+            <div class="encoding-logs" id="logs-container">
+                <div class="log-entry system"><span class="time">[SYS]</span> BAUHAUS_PROTOCOL_INIT...</div>
+            </div>
+        </section>
+        
+        <section class="panel" id="controls">
+            <div class="panel-header">
+                <h2>Controls</h2>
+            </div>
+            <div class="button-group">
+                <button class="btn primary" onclick="triggerMockEvent('Obstacle Avoidance')">Calibrate Haptics</button>
+                <button class="btn secondary" onclick="triggerMockEvent('Spatial Audio Refresh')">Reset Audio Space</button>
+            </div>
+            <div class="hardware-status">
+                <div class="hw-item">
+                    <span>EEG Core</span> <span class="status healthy">LINKED</span>
+                </div>
+                <div class="hw-item">
+                    <span>LiDAR Depth</span> <span class="status healthy">ACTIVE</span>
+                </div>
+                <div class="hw-item">
+                    <span>Vestibular</span> <span class="status paused">STANDBY</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
