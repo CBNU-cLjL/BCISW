@@ -1,0 +1,261 @@
+:root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --accent: #ffffff;
+    --border-width: 2px;
+    --grid-color: #333333;
+    --gray-light: #cccccc;
+    --gray-mid: #666666;
+    --gray-dark: #1a1a1a;
+    --font-sans: 'Outfit', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 !important; /* Force 90-degree Bauhaus corners */
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--fg);
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Visible mathematical grid background */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-bottom: var(--border-width) solid var(--fg);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.logo-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--fg);
+    letter-spacing: -2px;
+    line-height: 0.9;
+}
+
+.logo-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--fg);
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.status-indicator {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+}
+
+.pulse-dot {
+    width: 20px;
+    height: 20px;
+    background-color: var(--fg);
+    border: 2px solid var(--fg);
+}
+
+/* Removal of "pulse" animation for Bauhaus "Form follows Function" logic */
+.pulse-dot::after { display: none; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 0; /* Bauhaus blocks often touch */
+    padding: 0;
+    max-width: 100%;
+    border-left: var(--border-width) solid var(--fg);
+    border-right: var(--border-width) solid var(--fg);
+}
+
+.panel {
+    padding: 2rem;
+    border: var(--border-width) solid var(--fg);
+    background: var(--bg);
+    margin: -1px; /* Overlap borders for single-line look */
+}
+
+.panel:hover {
+    transform: none;
+    box-shadow: none;
+    background: var(--gray-dark);
+}
+
+.panel-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.panel-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.badge {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    background: var(--fg);
+    color: var(--bg);
+    padding: 2px 6px;
+    margin-top: 0.5rem;
+}
+
+/* Specific Panels */
+#signal-panel {
+    grid-column: span 8;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    flex-grow: 1;
+    border: 1px solid var(--grid-color);
+}
+
+.channel-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 1rem;
+    border: 1px solid var(--fg);
+}
+
+.stat-box {
+    padding: 1rem;
+    border: 1px solid var(--fg);
+    transition: background 0.1s;
+}
+
+.stat-box.active {
+    background: var(--fg);
+}
+
+.stat-box.active .stat-label, 
+.stat-box.active .stat-val {
+    color: var(--bg);
+}
+
+.stat-val {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+#spatial-panel {
+    grid-column: span 4;
+    height: 450px;
+}
+
+.spatial-radar {
+    border: var(--border-width) solid var(--fg);
+    background: transparent;
+    max-width: 300px;
+}
+
+.radar-scan {
+    background: transparent;
+    border-right: 1px solid var(--gray-mid);
+}
+
+.radar-entity {
+    background: var(--fg);
+    box-shadow: none;
+    animation: none; /* Stark appearance */
+}
+
+#encoding-panel {
+    grid-column: span 8;
+}
+
+.encoding-logs {
+    background: var(--bg);
+    border: 1px solid var(--fg);
+}
+
+.log-entry.system .time { color: var(--gray-light); }
+.log-entry.haptic { color: var(--fg); border-left: 4px solid var(--fg); padding-left: 8px; }
+
+#controls {
+    grid-column: span 4;
+}
+
+.button-group {
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 1.5rem;
+    border: var(--border-width) solid var(--fg);
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.btn.primary {
+    background: var(--fg);
+    color: var(--bg);
+    box-shadow: none;
+}
+
+.btn.primary:hover {
+    transform: none;
+    background: var(--gray-light);
+}
+
+.btn.secondary:hover {
+    background: var(--fg);
+    color: var(--bg);
+}
+
+.hw-item {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 1px solid var(--grid-color);
+}
+
+.status.healthy { color: var(--fg); border: 1px solid var(--fg); padding: 0 4px; }
+.status.paused { color: var(--gray-mid); }
+
+@media (max-width: 1024px) {
+    .dashboard-grid { border: none; }
+}
